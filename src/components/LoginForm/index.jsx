@@ -1,5 +1,7 @@
 'use client'
 
+import * as S from './style'
+
 const LoginForm = () => {
 
   const onSubmit = (e) => {
@@ -9,12 +11,10 @@ const LoginForm = () => {
 
   return(
     <form action="" onSubmit={onSubmit}>
-      <h1>Formulario de login</h1>
-      <label htmlFor="email">E-mail</label>
-      <input type="text" name='email'/>
-      <label htmlFor="password">Password</label>
-      <input type="password" name='password'/>
-      <button type="submit">Entrar</button>
+      <S.H1>Formulario de login</S.H1>
+      <S.TextField variant='outlined' type='text' name='email' label='E-mail' />
+      <S.TextField variant='outlined' type='password' name='password' label='Password' />
+      <S.Button variant='outlined' type="submit">Entrar</S.Button>
     </form>
   )
 }
