@@ -1,23 +1,31 @@
 'use client'
-import Button from '@mui/material/Button';
+import { useState } from 'react'
+import * as S from './style'
+import axios from 'axios'
 
 const RegisterForm = () => {
 
-  const onSubmit = (e) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [name, setName] = useState();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('Formulario enviado');
+    try {
+      const res = await axios.post('http://localhost:8080/auth/register', {email, password, name});
+      localStorage.setItem('token', res.data.data.token);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return(
     <form action="" onSubmit={onSubmit}>
-      <h1>Formulario de cadastro</h1>
-      <label htmlFor="name">Nome</label>
-      <input type="text" name='name'/>
-      <label htmlFor="email">E-mail</label>
-      <input type="text" name='email'/>
-      <label htmlFor="password">Password</label>
-      <input type="password" name='password'/>
-      <Button variant="outlined" color='success' type='submit'>Cadastrar</Button>;
+      <S.H1>Formulario de cadastro</S.H1>
+      <S.TextField onChange={(e) => setName(e.target.value)} label='Nome' name='name' variant='outlined' />
+      <S.TextField onChange={(e) => setEmail(e.target.value)} label='E-mail' name='email' variant='outlined' />
+      <S.TextField onChange={(e) => setPassword(e.target.value)} label='Senha' name='password' variant='outlined' />
+      <S.Button variant="outlined" color='success' type='submit'>Cadastrar</S.Button>;
     </form>
   )
 }
