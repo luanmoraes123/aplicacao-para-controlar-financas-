@@ -5,9 +5,9 @@ import * as S from './style'
 const RegisterPage = () => {
   return (
 
-    <S.Div>
+    <S.RegisterWrapper>
       <RegisterForm />
-    </S.Div>
+    </S.RegisterWrapper>
   );
 };
 

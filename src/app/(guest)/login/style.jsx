@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 
-export const RegisterWrapper = styled.div `
+export const LoginWrapper = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;

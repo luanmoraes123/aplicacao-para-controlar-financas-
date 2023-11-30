@@ -19,12 +19,12 @@ const LoginForm = () => {
   }
 
   return(
-    <form action="" onSubmit={onSubmit}>
+    <S.Form action="" onSubmit={onSubmit}>
       <S.H1>Formulario de login</S.H1>
       <S.TextField onChange={(e) => setEmail(e.target.value)} variant='outlined' type='text' name='email' label='E-mail' />
       <S.TextField onChange={(e) => setPassword(e.target.value)} variant='outlined' type='password' name='password' label='Senha' />
-      <S.Button variant='outlined' type="submit">Entrar</S.Button>
-    </form>
+      <S.Button variant='contained' type="submit">Entrar</S.Button>
+    </S.Form>
   )
 }
 
