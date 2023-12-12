@@ -3,10 +3,9 @@ import { useState } from 'react'
 import * as S from './style'
 import axios from 'axios'
 
-const LoginForm = () => {
+const CategoriasCreate = () => {
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState();
   const [notification, setNotification] = useState({
     open: false,
     message:'',
@@ -16,18 +15,23 @@ const LoginForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/auth/login', {email, password});
-      localStorage.setItem('token', res.data.data.token);
+      const token = localStorage.getItem('token')
+      const res = await axios.post('http://localhost:8080/categorias', {name}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      
       setNotification({
         open: true,
-        message: 'Login efetuado com sucesso',
+        message: 'Categoria criada com sucesso',
         severity: 'success'
       });
     } catch (error) {
       console.log(error);
       setNotification({
         open: true,
-        message: error.response.data.error,
+        message: error.response.data.data,
         severity: 'error'
       });
     }
@@ -35,10 +39,9 @@ const LoginForm = () => {
 
   return(
     <S.Form action="" onSubmit={onSubmit}>
-      <S.H1>Formulario de login</S.H1>
-      <S.TextField onChange={(e) => setEmail(e.target.value)} variant='outlined' type='text' placeholder='E-mail' />
-      <S.TextField onChange={(e) => setPassword(e.target.value)} variant='outlined' type='password' placeholder='Senha' />
-      <S.Button variant='contained' type="submit">Entrar</S.Button>
+      <S.H1>Cadastro de categoria</S.H1>
+      <S.TextField onChange={(e) => setName(e.target.value)} variant='outlined' type='text' placeholder='Nome' />
+      <S.Button variant='contained' type="submit">Cadastrar</S.Button>
       <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
           open: false,
           message:'',
@@ -56,4 +59,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm;
+export default CategoriasCreate;
