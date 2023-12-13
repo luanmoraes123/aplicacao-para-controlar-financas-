@@ -41,7 +41,7 @@ const RegisterForm = () => {
         <S.TextField onChange={(e) => setName(e.target.value)} placeholder='Nome' name='name' type='text' variant='outlined' />
         <S.TextField onChange={(e) => setEmail(e.target.value)} placeholder='E-mail' name='email' type='email' variant='outlined' />
         <S.TextField onChange={(e) => setPassword(e.target.value)} placeholder='Senha' name='password' type='password' variant='outlined' />
-        <S.Button variant="contained" type='submit'>Cadastrar</S.Button>;
+        <S.Button variant="contained" color='primary' type='submit'>Cadastrar</S.Button>;
         <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
           open: false,
           message:'',

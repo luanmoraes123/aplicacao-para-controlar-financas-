@@ -7,6 +7,7 @@ import CategoriasUpdate from '../../../components/Categorias/CategoriasUpdate'
 import MetasCreate from '../../../components/Metas/MetasCreate'
 import MetasUpdate from '../../../components/Metas/MetasUpdate'
 import TransacaoCreate from '../../../components/transacoes/TransacoesCreate'
+import TransacaoUpdade from '../../../components/transacoes/TransacoesUpdate'
 
 export const DashBoard = () => {
 
@@ -22,7 +23,7 @@ export const DashBoard = () => {
     <div>
       Dashboard
 
-      <TransacaoCreate  />
+      <TransacaoUpdade  transacaoId={1}/>
 
     </div>
   )
