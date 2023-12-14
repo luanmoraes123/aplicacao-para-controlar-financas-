@@ -37,25 +37,27 @@ const RegisterForm = () => {
   return(
     <>
       <S.Form action="" onSubmit={onSubmit}>
-        <S.H1>Formulario de cadastro</S.H1>
+        <S.Typography variant='h1' color='primary'><spam style={{fontWeight: 'bold', fontSize:'3rem'}}>YOUR</spam>finance.<spam style={{fontWeight: 'bold', fontSize:'3rem'}}>IO</spam></S.Typography>
+        <S.Typography variant='h2' >Crie sua conta</S.Typography>
         <S.TextField onChange={(e) => setName(e.target.value)} placeholder='Nome' name='name' type='text' variant='outlined' />
         <S.TextField onChange={(e) => setEmail(e.target.value)} placeholder='E-mail' name='email' type='email' variant='outlined' />
         <S.TextField onChange={(e) => setPassword(e.target.value)} placeholder='Senha' name='password' type='password' variant='outlined' />
-        <S.Button variant="contained" color='primary' type='submit'>Cadastrar</S.Button>;
-        <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
+        <S.Button variant="contained" color='primary' type='submit'>Cadastrar</S.Button>
+        <div>Já possui uma conta? <S.Link href='/login'>Faça login aqui!</S.Link></div>
+      </S.Form>
+      <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
           open: false,
           message:'',
           severity:''
         })}>
-          <S.Alert onClose={()=> setNotification({
+        <S.Alert onClose={()=> setNotification({
           open: false,
           message:'',
           severity:''
         })} severity={notification.severity} sx={{ width: '100%' }}>
            {notification.message}
-          </S.Alert>
-        </S.Snackbar>
-      </S.Form>
+        </S.Alert>
+      </S.Snackbar>
       
     </>
   )

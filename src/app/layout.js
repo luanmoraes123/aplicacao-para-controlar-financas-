@@ -12,8 +12,14 @@ const theme = createTheme({
   typography: {
     h1: {
       fontFamily: ['Poppins', 'sans-serif'].join(','),
-      fontSize: '40px',
+      fontSize: '2.5rem',
       fontWeight: '500'
+    },
+    h2: {
+      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontSize: '1.5rem',
+      fontWeight: '700',
+      color: 'black'
     }
   }
 });

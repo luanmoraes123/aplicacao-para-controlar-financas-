@@ -27,12 +27,11 @@ export const Alert = styled(AlertMUI)``
 export const Snackbar = styled(SnackbarMUI)``
 
 export const Typography = styled(TypographyMUI)`
-  margin-bottom: 8vh;
+  margin-bottom: 5vh;
 `
 
 export const Link = styled(LinkNext)`
   color: ${({theme}) => theme.palette.primary.main};
   text-decoration: none;
-  font-size: 1.5rem;
-  font-family: Poppins;
+  font-size: 1rem;
 `

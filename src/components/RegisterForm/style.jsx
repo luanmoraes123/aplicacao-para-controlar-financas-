@@ -14,15 +14,11 @@ export const TextField = styled(TextFieldMUI)`
   background-color: #fff;
 `
 
-export const H1 = styled.h1 `
-  font-size: 25px;
-`
-
 export const Form = styled.form `
   display: flex;
   flex-direction: column;
   width: 20%;
-  gap: 10px;
+  gap: 4vh;
   text-align: center;
 `
 
@@ -31,12 +27,11 @@ export const Alert = styled(AlertMUI)``
 export const Snackbar = styled(SnackbarMUI)``
 
 export const Typography = styled(TypographyMUI)`
-  margin-bottom: 8vh;
+  
 `
 
 export const Link = styled(LinkNext)`
   color: ${({theme}) => theme.palette.primary.main};
   text-decoration: none;
-  font-size: 1.5rem;
-  font-family: Poppins;
 `
+
