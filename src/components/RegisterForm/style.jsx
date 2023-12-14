@@ -3,6 +3,8 @@ import ButtonMUI from '@mui/material/Button';
 import TextFieldMUI from '@mui/material/TextField';
 import SnackbarMUI from '@mui/material/Snackbar'
 import AlertMUI from '@mui/material/Alert'
+import TypographyMUI from '@mui/material/Typography';
+import LinkNext from 'next/link'
 
 export const Button = styled(ButtonMUI)`
   
@@ -27,3 +29,14 @@ export const Form = styled.form `
 export const Alert = styled(AlertMUI)``
 
 export const Snackbar = styled(SnackbarMUI)``
+
+export const Typography = styled(TypographyMUI)`
+  margin-bottom: 8vh;
+`
+
+export const Link = styled(LinkNext)`
+  color: ${({theme}) => theme.palette.primary.main};
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: Poppins;
+`

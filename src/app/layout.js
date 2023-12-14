@@ -9,6 +9,13 @@ const theme = createTheme({
       main: '#299D91',
     },
   },
+  typography: {
+    h1: {
+      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontSize: '40px',
+      fontWeight: '500'
+    }
+  }
 });
 
 export default function RootLayout({ children }) {

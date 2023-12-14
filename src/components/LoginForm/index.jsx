@@ -34,11 +34,14 @@ const LoginForm = () => {
   }
 
   return(
+  <>
     <S.Form action="" onSubmit={onSubmit}>
-      <S.H1>Formulario de login</S.H1>
+      <S.Typography variant='h1' color='primary'>YOURfinance.IO</S.Typography>
       <S.TextField onChange={(e) => setEmail(e.target.value)} variant='outlined' type='text' placeholder='E-mail' />
       <S.TextField onChange={(e) => setPassword(e.target.value)} variant='outlined' type='password' placeholder='Senha' />
       <S.Button variant='contained' type="submit">Entrar</S.Button>
+      <S.Link href='/register'>Criar uma conta</S.Link>
+    </S.Form>
       <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
           open: false,
           message:'',
@@ -52,7 +55,7 @@ const LoginForm = () => {
            {notification.message}
           </S.Alert>
         </S.Snackbar>
-    </S.Form>
+  </>
   )
 }
 
