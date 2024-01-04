@@ -13,13 +13,16 @@ export const Button = styled(ButtonMUI)`
 `
 
 export const TextField = styled(TextFieldMUI)`
+  margin-bottom: 5%;
 `
 
 export const H1 = styled.h1 `
 `
 
 export const Form = styled.form `
-  
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 `
 
 export const Alert = styled(AlertMUI)``
@@ -30,6 +33,8 @@ export const FormControl = styled(FormControlMUI)``
 
 export const InputLabel = styled(InputLabelMUI)``
 
-export const Select = styled(SelectMUI)``
+export const Select = styled(SelectMUI)`
+  margin-bottom: 5%;
+`
 
 export const MenuItem = styled(MenuItemMUI)``
