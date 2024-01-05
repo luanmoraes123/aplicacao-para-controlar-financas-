@@ -9,12 +9,16 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import GridViewIcon from '@mui/icons-material/GridView';
+import WalletIcon from '@mui/icons-material/Wallet';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
 const  Menu = ({children}) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box  sx={{ display: 'flex' }}>
       
       <Drawer
         sx={{
@@ -23,6 +27,8 @@ const  Menu = ({children}) => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            background: 'black',
+            color: '#fff'
           },
         }}
         variant="permanent"
@@ -34,7 +40,7 @@ const  Menu = ({children}) => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <GridViewIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary='Menu principal' />
               </ListItemButton>
@@ -43,7 +49,7 @@ const  Menu = ({children}) => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <WalletIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary='Categoria' />
               </ListItemButton>
@@ -52,9 +58,17 @@ const  Menu = ({children}) => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <InboxIcon />
+                  <SwapHorizIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
                 <ListItemText primary='Extrato' />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <LogoutIcon style={{color: '#fff'}}/>
+                </ListItemIcon>
+                <ListItemText primary='Sair' />
               </ListItemButton>
             </ListItem>
       </ List>
