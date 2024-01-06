@@ -8,6 +8,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog'
 import { NumericFormat } from 'react-number-format';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { formatISO } from 'date-fns';
+import { ptBR } from 'date-fns/locale'
 
 
 const NumericFormatCustom = forwardRef(function NumericFormatCustom(
@@ -31,7 +36,7 @@ const NumericFormatCustom = forwardRef(function NumericFormatCustom(
       thousandSeparator='.'
       decimalSeparator=','
       valueIsNumericString
-      prefix="R$"
+      prefix="R$ "
     />
   );
 });
@@ -67,7 +72,7 @@ const MetasCreate = ({openModal, closeModal}) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token')
-      const res = await axios.post('http://localhost:8080/metas', {descricao, valor, data: dataMeta}, {
+      const res = await axios.post('http://localhost:8080/metas', {descricao, valor: valor * 100, data: formatISO(dataMeta, {representation: 'date', locale: ptBR} )}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -111,9 +116,10 @@ const MetasCreate = ({openModal, closeModal}) => {
           <S.Form action="" onSubmit={onSubmit}>
             <S.TextField onChange={(e) => setDescricao(e.target.value)} variant='outlined' type='text' placeholder='Descrição' />
             <S.TextField onChange={(e) => setValor(e.target.value)} variant='outlined' name="valor" placeholder='valor'
-              id="formatted-numberformat-input" InputProps={{ inputComponent: NumericFormatCustom,
-        }} />
-            <S.TextField onChange={(e) => setDataMeta(e.target.value)} variant='outlined' type='text' placeholder='Data' />
+              id="formatted-numberformat-input" InputProps={{ inputComponent: NumericFormatCustom, }} />
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
+              <DatePicker onChange={(value) => setDataMeta(value)}/>
+            </LocalizationProvider>
           </S.Form>
         </DialogContent>
         <DialogActions style={{display: 'flex', justifyContent: 'center'}}>
