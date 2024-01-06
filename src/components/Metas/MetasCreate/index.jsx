@@ -1,9 +1,42 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, forwardRef } from 'react'
 import * as S from './style'
 import axios from 'axios'
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog'
+import { NumericFormat } from 'react-number-format';
 
-const MetasCreate = () => {
+
+const NumericFormatCustom = forwardRef(function NumericFormatCustom(
+  props,
+  ref,
+) {
+  const { onChange, ...other } = props;
+
+  return (
+    <NumericFormat
+      {...other}
+      getInputRef={ref}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator='.'
+      decimalSeparator=','
+      valueIsNumericString
+      prefix="R$"
+    />
+  );
+});
+
+const MetasCreate = ({openModal, closeModal}) => {
 
   const [descricao, setDescricao] = useState();
   const [valor, setValor] = useState();
@@ -13,6 +46,22 @@ const MetasCreate = () => {
     message:'',
     severity: ''
   });
+  const [open, setOpen] = useState();
+
+  useEffect(()=> {
+    if(openModal){
+      setOpen(openModal);
+    }
+  }, [openModal])
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    closeModal(false);
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +78,8 @@ const MetasCreate = () => {
         message: 'Meta criada com sucesso',
         severity: 'success'
       });
+
+      handleClose();
     } catch (error) {
       console.log(error);
       setNotification({
@@ -40,26 +91,36 @@ const MetasCreate = () => {
   }
 
   return(
-    <S.Form action="" onSubmit={onSubmit}>
-      <S.H1>Cadastro de metas</S.H1>
-      <S.TextField onChange={(e) => setDescricao(e.target.value)} variant='outlined' type='text' placeholder='Descrição' />
-      <S.TextField onChange={(e) => setValor(e.target.value)} variant='outlined' type='text' placeholder='Valor' />
-      <S.TextField onChange={(e) => setDataMeta(e.target.value)} variant='outlined' type='text' placeholder='Data' />
-      <S.Button variant='contained' type="submit">Cadastrar</S.Button>
+    <>
       <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
-          open: false,
-          message:'',
-          severity:''
-        })}>
-          <S.Alert onClose={()=> setNotification({
-          open: false,
-          message:'',
-          severity:''
-        })} severity={notification.severity} sx={{ width: '100%' }}>
-           {notification.message}
-          </S.Alert>
-        </S.Snackbar>
-    </S.Form>
+                open: false,
+                message:'',
+                severity:''
+              })}>
+                <S.Alert onClose={()=> setNotification({
+                open: false,
+                message:'',
+                severity:''
+              })} severity={notification.severity} sx={{ width: '100%' }}>
+                {notification.message}
+                </S.Alert>
+      </S.Snackbar>
+      <Dialog maxWidth='xs' fullWidth open={open} onClose={handleClose}>
+        <DialogTitle style={{textAlign: 'center'}}>Cadastro de metas</DialogTitle>
+        <DialogContent>
+          <S.Form action="" onSubmit={onSubmit}>
+            <S.TextField onChange={(e) => setDescricao(e.target.value)} variant='outlined' type='text' placeholder='Descrição' />
+            <S.TextField onChange={(e) => setValor(e.target.value)} variant='outlined' name="valor" placeholder='valor'
+              id="formatted-numberformat-input" InputProps={{ inputComponent: NumericFormatCustom,
+        }} />
+            <S.TextField onChange={(e) => setDataMeta(e.target.value)} variant='outlined' type='text' placeholder='Data' />
+          </S.Form>
+        </DialogContent>
+        <DialogActions style={{display: 'flex', justifyContent: 'center'}}>
+          <S.Button variant='contained' onClick={onSubmit}>Cadastrar</S.Button>
+        </DialogActions>
+      </Dialog>
+  </>
   )
 }
 

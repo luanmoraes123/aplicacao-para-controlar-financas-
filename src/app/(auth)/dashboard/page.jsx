@@ -1,6 +1,7 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import CategoriasCreate from '../../../components/Categorias/CategoriasCreate'
 import CategoriasUpdate from '../../../components/Categorias/CategoriasUpdate'
@@ -11,8 +12,24 @@ import TransacaoUpdade from '../../../components/transacoes/TransacoesUpdate'
 
 export const DashBoard = () => {
 
+  const router = useRouter();
+  const [user, setUser] = useState({id: null});
   useEffect(() => {
     const token = localStorage.getItem('token');
+
+    if (!token) {
+      router.push('/login');
+    }
+
+    axios.get('http://localhost:8080/users/me', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(res => {
+      setUser(res.data.data);
+    }).catch(res => {
+      router.push('/login');
+    })
   
     return () => {
       
@@ -23,7 +40,7 @@ export const DashBoard = () => {
     <div>
       Dashboard
 
-      <TransacaoUpdade  transacaoId={1}/>
+      <CategoriasCreate  transacaoId={1}/>
 
     </div>
   )

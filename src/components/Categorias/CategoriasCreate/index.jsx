@@ -1,16 +1,39 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as S from './style'
 import axios from 'axios'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
-const CategoriasCreate = () => {
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+const CategoriasCreate = ({openModal, closeModal}) => {
 
   const [name, setName] = useState();
+  const [open, setOpen] = useState();
   const [notification, setNotification] = useState({
     open: false,
     message:'',
     severity: ''
   });
+
+  useEffect(()=> {
+    if(openModal){
+      setOpen(openModal);
+    }
+  }, [openModal])
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    closeModal(false);
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +50,8 @@ const CategoriasCreate = () => {
         message: 'Categoria criada com sucesso',
         severity: 'success'
       });
+
+      handleClose();
     } catch (error) {
       console.log(error);
       setNotification({
@@ -37,11 +62,8 @@ const CategoriasCreate = () => {
     }
   }
 
-  return(
-    <S.Form action="" onSubmit={onSubmit}>
-      <S.H1>Cadastro de categoria</S.H1>
-      <S.TextField onChange={(e) => setName(e.target.value)} variant='outlined' type='text' placeholder='Nome' />
-      <S.Button variant='contained' type="submit">Cadastrar</S.Button>
+  return(    
+    <>
       <S.Snackbar open={notification.open} autoHideDuration={3000} onClose={()=> setNotification({
           open: false,
           message:'',
@@ -54,8 +76,19 @@ const CategoriasCreate = () => {
         })} severity={notification.severity} sx={{ width: '100%' }}>
            {notification.message}
           </S.Alert>
-        </S.Snackbar>
-    </S.Form>
+      </S.Snackbar>
+      <S.Dialog maxWidth='xs' fullWidth open={open} onClose={handleClose}>
+        <DialogTitle style={{textAlign: 'center'}}>Nova categoria</DialogTitle>
+        <DialogContent>
+          <S.Form action="" onSubmit={onSubmit}>
+            <S.TextField onChange={(e) => setName(e.target.value)} variant='outlined' type='text' placeholder='Descrição' />
+          </S.Form>
+        </DialogContent>
+        <DialogActions style={{display: 'flex', justifyContent: 'center'}}>
+          <S.Button variant='contained' onClick={onSubmit}>Salvar</S.Button>
+        </DialogActions>
+      </S.Dialog>
+    </>
   )
 }
 

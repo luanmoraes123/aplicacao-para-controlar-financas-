@@ -2,9 +2,12 @@
 import { useState } from 'react'
 import * as S from './style'
 import axios from 'axios'
+import { useRouter } from 'next/navigation';
+
 
 const LoginForm = () => {
 
+  const router = useRouter();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [notification, setNotification] = useState({
@@ -23,6 +26,7 @@ const LoginForm = () => {
         message: 'Login efetuado com sucesso',
         severity: 'success'
       });
+      router.push('/dashboard');
     } catch (error) {
       console.log(error);
       setNotification({

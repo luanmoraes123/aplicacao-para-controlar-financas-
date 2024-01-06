@@ -37,7 +37,7 @@ const TransacoesUpdate = ({transacaoId}) => {
       } catch (error) {
         setNotification({
           open: true,
-          message: error.response.data.data,
+          message: error.response.data.message,
           severity: 'error'
         });
       }

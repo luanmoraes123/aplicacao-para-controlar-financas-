@@ -9,13 +9,16 @@ export const Button = styled(ButtonMUI)`
 `
 
 export const TextField = styled(TextFieldMUI)`
+  width: 100%;
 `
 
 export const H1 = styled.h1 `
 `
 
 export const Form = styled.form `
-  
+display: flex;
+flex-direction: column;
+gap: 20px;
 `
 
 export const Alert = styled(AlertMUI)``
