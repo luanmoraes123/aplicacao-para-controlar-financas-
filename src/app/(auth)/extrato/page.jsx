@@ -6,6 +6,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import CategoriaCreate from '../../../components/Categorias/CategoriasCreate';
 import MetasCreate from '../../../components/Metas/MetasCreate';
+import TransacoesCreate from '../../../components/transacoes/TransacoesCreate';
 
 const ExtratoPage = () => {
 
@@ -13,6 +14,7 @@ const ExtratoPage = () => {
   const [user, setUser] = useState({id: null});
   const [openCategoria, setOpenCategoria] = useState(false);
   const [openMetas, setOpenMetas] = useState(false);
+  const [openTransacoes, setOpenTransacoes] = useState(false);
 
   const abrirCategoria = () => {
     setOpenCategoria(!openCategoria);
@@ -20,6 +22,10 @@ const ExtratoPage = () => {
 
   const abrirMetas = () => {
     setOpenMetas(!openMetas);
+  }
+
+  const abrirTransacoes = () => {
+    setOpenTransacoes(!openTransacoes);
   }
   
 
@@ -47,11 +53,12 @@ const ExtratoPage = () => {
 
   return (
     <div>
-      <Button variant='contained' color='primary' type='submit'>Nova transação</Button>
+      <Button variant='contained' color='primary' onClick={abrirTransacoes}>Nova transação</Button>
       <Button variant='contained' color='primary' onClick={abrirCategoria}>Nova categoria</Button>
       <Button variant='contained' color='primary' onClick={abrirMetas}>Nova meta</Button>
       <CategoriaCreate openModal={openCategoria} closeModal={setOpenCategoria}/>
       <MetasCreate openModal={openMetas} closeModal={setOpenMetas}/>
+      <TransacoesCreate openModal={openTransacoes} closeModal={setOpenTransacoes}/>
     </div>
   )
 }

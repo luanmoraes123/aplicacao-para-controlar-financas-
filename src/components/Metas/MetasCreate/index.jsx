@@ -45,13 +45,13 @@ const MetasCreate = ({openModal, closeModal}) => {
 
   const [descricao, setDescricao] = useState();
   const [valor, setValor] = useState();
-  const [dataMeta, setDataMeta] = useState();
+  const [dataMeta, setDataMeta] = useState(new Date());
   const [notification, setNotification] = useState({
     open: false,
     message:'',
     severity: ''
   });
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
 
   useEffect(()=> {
     if(openModal){
@@ -118,7 +118,7 @@ const MetasCreate = ({openModal, closeModal}) => {
             <S.TextField onChange={(e) => setValor(e.target.value)} variant='outlined' name="valor" placeholder='valor'
               id="formatted-numberformat-input" InputProps={{ inputComponent: NumericFormatCustom, }} />
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
-              <DatePicker onChange={(value) => setDataMeta(value)}/>
+              <DatePicker value={dataMeta} onChange={(value) => setDataMeta(value)}/>
             </LocalizationProvider>
           </S.Form>
         </DialogContent>

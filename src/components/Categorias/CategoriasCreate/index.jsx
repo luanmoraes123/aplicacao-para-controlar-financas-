@@ -13,7 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const CategoriasCreate = ({openModal, closeModal}) => {
 
   const [name, setName] = useState();
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
   const [notification, setNotification] = useState({
     open: false,
     message:'',

@@ -19,7 +19,9 @@ export const H1 = styled.h1 `
 `
 
 export const Form = styled.form `
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `
 
 export const Alert = styled(AlertMUI)``
