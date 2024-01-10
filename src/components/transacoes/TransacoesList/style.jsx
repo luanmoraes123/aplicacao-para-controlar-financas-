@@ -12,11 +12,15 @@ import  InputLabelMUI from '@mui/material/InputLabel';
 import SelectMUI from '@mui/material/Select'
 import MenuItemMUI from '@mui/material/MenuItem'
 
-export const Select = styled(SelectMUI)``
+export const Select = styled(SelectMUI)`
+  height: 35px;
+`
 
 export const MenuItem = styled(MenuItemMUI)``
 
 export const InputLabel = styled(InputLabelMUI)``
 
-export const FormControl = styled(FormControlMUI)``
+export const FormControl = styled(FormControlMUI)`
+ margin-bottom: 1%;
+`
 

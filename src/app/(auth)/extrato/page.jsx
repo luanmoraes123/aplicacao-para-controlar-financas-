@@ -50,7 +50,7 @@ const ExtratoPage = () => {
     return () => {
       
     }
-  }, [])
+  }, [router])
 
   return (
     <div>
