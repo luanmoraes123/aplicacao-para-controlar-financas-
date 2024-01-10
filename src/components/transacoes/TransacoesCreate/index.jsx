@@ -100,6 +100,7 @@ const TransacoesCreate = ({openModal, closeModal}) => {
       });
 
       handleClose();
+
     } catch (error) {
       console.log(error);
       setNotification({
@@ -141,9 +142,7 @@ const TransacoesCreate = ({openModal, closeModal}) => {
             value={categoria}
             onChange={(e)=> setCategoria(e.target.value)}
             >
-            {categorias.length && categorias.map(categoria => <S.MenuItem key={categoria.id} value={categoria.id}>{categoria.name}</S.MenuItem>)}
-            
-            
+            {categorias.length > 0 && categorias.map(categoria => <S.MenuItem key={categoria.id} value={categoria.id}>{categoria.name}</S.MenuItem>)}
             </S.Select>
           </S.FormControl>
           <S.FormControl>

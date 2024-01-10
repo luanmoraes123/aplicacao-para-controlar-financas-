@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import * as S from './style'
 import axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -18,19 +19,11 @@ import {compareAsc, format} from 'date-fns'
 
 const TransacoesList = () => {
 
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
-
   const [transacoes, setTransacoes] = useState([]);
+  const [transacoesTable, setTransacoesTable] = useState([]);
+  const [tipo, setTipo] = useState('todas');
+  const [ano, setAno] = useState('');
+  const [anos, setAnos] = useState([]);
 
   useEffect(() => {
     const getTransacoes = async () => {
@@ -41,7 +34,14 @@ const TransacoesList = () => {
            Authorization: `Bearer ${token}`
          }
        })
-       setTransacoes(response.data.data);
+        setTransacoes(response.data.data);
+        setTransacoesTable(response.data.data);
+        
+        
+
+
+        
+
       } catch (error) {
        console.log(error);
       }
@@ -49,13 +49,58 @@ const TransacoesList = () => {
   
     getTransacoes();
   }, [])
+
+  useEffect(() => {
+
+    if(tipo === 'todas'){
+      setTransacoesTable(transacoes);
+     }
+     
+     if(tipo === 'receita'){
+      const receitas = transacoes.filter(transacao => transacao.tipo === 'Receita');
+      setTransacoesTable(receitas)
+     }
+     
+     if(tipo === 'despesa'){
+      const despesas = transacoes.filter(transacao => transacao.tipo === 'Despesa');
+      setTransacoesTable(despesas)
+     }
+
+     
+
+     
+ 
+  }, [tipo, transacoes])
+
+  useEffect(() => {
+    setAnos(transacoesTable.map(
+      transacao => new Date(transacao.data).getFullYear())
+      .filter((ano, index, anos) => anos.indexOf(ano) === index)
+      .sort((a, b) => a-b))
+  }, [transacoesTable]);
+  
+  
+  
   
   return (
     <>
+      <div style={{margin: '20px'}}>
+        <S.FormControl>
+          <S.InputLabel id="ano">Ano</S.InputLabel>
+          <S.Select
+            labelId="ano"
+            id="ano_select"
+            value={ano}
+            onChange={(e)=> setAno(e.target.value)}
+          >
+          {anos.length > 0 && anos.map((ano, index) => <S.MenuItem key={index} value={ano}>{ano}</S.MenuItem>)}
+          </S.Select>
+        </S.FormControl>
+      </div>
       <div style={{display: 'flex', gap: '15px', margin: '30px 0'}}>
-        <div style={{cursor: 'pointer'}}>Todas transações</div>
-        <div style={{cursor: 'pointer'}}>Despesas</div>
-        <div style={{cursor: 'pointer'}}>Receitas</div>
+        <div onClick={() => setTipo('todas')} style={{cursor: 'pointer'}}>Todas transações</div>
+        <div onClick={() => setTipo('despesa')} style={{cursor: 'pointer'}}>Despesas</div>
+        <div onClick={() => setTipo('receita')} style={{cursor: 'pointer'}}>Receitas</div>
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -69,7 +114,7 @@ const TransacoesList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transacoes.map((transacao) => (
+            {transacoesTable.map((transacao) => (
               <TableRow
                 key={transacao.descricao}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
