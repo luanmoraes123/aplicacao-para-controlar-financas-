@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import CategoriaCreate from '../../../components/Categorias/CategoriasCreate';
 import MetasCreate from '../../../components/Metas/MetasCreate';
 import TransacoesCreate from '../../../components/transacoes/TransacoesCreate';
+import TransacoesList from '../../../components/transacoes/TransacoesList';
 
 const ExtratoPage = () => {
 
@@ -59,6 +60,7 @@ const ExtratoPage = () => {
       <CategoriaCreate openModal={openCategoria} closeModal={setOpenCategoria}/>
       <MetasCreate openModal={openMetas} closeModal={setOpenMetas}/>
       <TransacoesCreate openModal={openTransacoes} closeModal={setOpenTransacoes}/>
+      <TransacoesList></TransacoesList>
     </div>
   )
 }
