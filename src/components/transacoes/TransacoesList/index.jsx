@@ -99,6 +99,7 @@ const TransacoesList = () => {
           <S.InputLabel id="ano">Ano</S.InputLabel>
           <S.Select
             labelId="ano"
+            label='Ano'
             id="ano"
             value={ano}
             onChange={(e)=> setAno(e.target.value)}
