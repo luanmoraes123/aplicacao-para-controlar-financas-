@@ -7,23 +7,6 @@ import axios from 'axios';
 const chartSetting = {
   height: 500,
 };
-const dataset = [
-  {
-    receita: 1200000,
-    despesa: 800000,
-    ano: '2020',
-  },
-  {
-    receita: 1800000,
-    despesa: 1000000,
-    ano: '2021',
-  },
-  {
-    receita: 2500000,
-    despesa: 1400000,
-    ano: '2022',
-  }
-];
 
 const valueFormatter = (value) => `R$ ${value / 100}`;
 
@@ -33,6 +16,7 @@ const Chart = () => {
   const [transacoesChart, setTransacoesChart] = useState([]);
   const [ano, setAno] = useState('todos');
   const [anos, setAnos] = useState([]);
+  const [dataset, setDataset] = useState([]);
 
   useEffect(() => {
     const getTransacoes = async () => {
@@ -50,36 +34,53 @@ const Chart = () => {
           .filter((ano, index, anos) => anos.indexOf(ano) === index)
           .sort((a, b) => a-b))
         
-        const teste = []
+        const somatorio = []
+
         for (const transacao of response.data.data) {
           const ano = new Date(transacao.data).getFullYear();
-          teste[ano] = teste[ano] ?? {}
+          somatorio[ano] = somatorio[ano] ?? {}
           if(transacao.tipo === 'Receita'){
-            teste[ano].receita = teste[ano].receita ? teste[ano].receita = transacao.valor : transacao.valor
+            somatorio[ano].receita = somatorio[ano].receita ? somatorio[ano].receita = transacao.valor : transacao.valor
           }
           if(transacao.tipo === 'Despesa'){
-            teste[ano].despesa = teste[ano].despesa ? teste[ano].despesa = transacao.valor : transacao.valor
+            somatorio[ano].despesa = somatorio[ano].despesa ? somatorio[ano].despesa = transacao.valor : transacao.valor
           }
         }
-        console.log(teste);
+
+        const dataset = [] 
+        somatorio.map((item, index) => {
+          dataset.push({
+            ano: index,
+            receita: item.receita ?? 0,
+            despesa: item.despesa ?? 0
+          }) 
+        });
+
+        setDataset(dataset) 
+
       } catch (error) {
        console.log(error);
       }
      }
   
     getTransacoes();
-  }, [])
+    console.log(dataset)
+  }, [dataset])
 
   return (
-    <BarChart
+
+    <>
+
+    {dataset.length && <BarChart
       dataset={dataset}
       xAxis={[{ scaleType: 'band', dataKey: 'ano' }]}
       series={[
-        { dataKey: 'despesa', label: 'Despesa', valueFormatter },
         { dataKey: 'receita', label: 'Receita', valueFormatter },
+        { dataKey: 'despesa', label: 'Despesa', valueFormatter },
       ]}
       {...chartSetting}
-    />
+    />}
+    </>
   )
 }
 

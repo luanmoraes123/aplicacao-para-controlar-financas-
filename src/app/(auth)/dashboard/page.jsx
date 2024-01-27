@@ -29,13 +29,15 @@ export const DashBoard = () => {
     return () => {
       
     }
-  }, [])
+  }, [router])
   
   return(
     <div>
       Dashboard
+      <div style={{marginLeft: '80px'}}>
 
       <Chart />
+      </div>
 
     </div>
   )
