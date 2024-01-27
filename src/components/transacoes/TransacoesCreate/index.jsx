@@ -138,6 +138,7 @@ const TransacoesCreate = ({openModal, closeModal}) => {
               <S.InputLabel id="categoria">Categoria</S.InputLabel>
               <S.Select
             labelId="categoria"
+            label="Categoria"
             id="categoria_select"
             value={categoria}
             onChange={(e)=> setCategoria(e.target.value)}
@@ -149,6 +150,7 @@ const TransacoesCreate = ({openModal, closeModal}) => {
             <S.InputLabel id="tipo">Tipo</S.InputLabel>
             <S.Select
             labelId="tipo"
+            label="Tipo"
             id="tipo_select"
             value={tipo}
             onChange={(e)=> setTipo(e.target.value)}
