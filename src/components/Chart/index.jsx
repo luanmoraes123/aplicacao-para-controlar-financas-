@@ -64,8 +64,7 @@ const Chart = () => {
      }
   
     getTransacoes();
-    console.log(dataset)
-  }, [dataset])
+  }, [])
 
   return (
 

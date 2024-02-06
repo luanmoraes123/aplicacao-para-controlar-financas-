@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Chart from '../../../components/Chart'
+import Panel from '../../../components/Panel'
 
 export const DashBoard = () => {
 
@@ -33,7 +34,8 @@ export const DashBoard = () => {
   
   return(
     <div>
-      Dashboard
+      Olá, {user.name}
+      <Panel />
       <div style={{marginLeft: '80px'}}>
 
       <Chart />
