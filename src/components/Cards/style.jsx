@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+import FormControlMUI from '@mui/material/FormControl'
+import  InputLabelMUI from '@mui/material/InputLabel';
+import SelectMUI from '@mui/material/Select'
+import MenuItemMUI from '@mui/material/MenuItem'
 
 export const ChartContainer = styled.div `
   display: flex;
@@ -7,7 +11,7 @@ export const ChartContainer = styled.div `
   background-color: #fff;
   padding: 25px;
   margin: 25px;
-  width: 50%;
+  width: 80%;
 `
 
 export const IconWraper = styled.div `
@@ -23,3 +27,13 @@ export const Content = styled.div `
   text-align: center;
   width: 100%;
 `
+
+export const FormControl = styled(FormControlMUI)`
+min-width: 200px;
+`
+
+export const InputLabel = styled(InputLabelMUI)``
+
+export const Select = styled(SelectMUI)``
+
+export const MenuItem = styled(MenuItemMUI)``

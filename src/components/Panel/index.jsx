@@ -15,8 +15,7 @@ const Panel = () => {
     despesa: 0,
     receita: 0
   })
-  const [metas, setMetas] = useState([])
-  const [meta, setMeta] = useState({})
+  
   
   useEffect(() => {
     const getTransacoes = async () => {
@@ -50,25 +49,7 @@ const Panel = () => {
     getTransacoes();
   }, [])
 
-  useEffect(() => {
-    const getMetas = async () => {
-     try {
-       const token = localStorage.getItem('token');
-       const response = await axios.get('http://localhost:8080/metas', {
-         headers: {
-           Authorization: `Bearer ${token}`
-         }
-       })
-        
-       setMetas(response.data.data)
-
-
-      } catch (error) {
-       console.log(error);
-      }
-     }
-    getMetas();
-  }, [])
+  
 
   return (
     <Grid container spacing={2}>
@@ -78,7 +59,7 @@ const Panel = () => {
       </Grid>
       <Grid item xs={6}>
         <Card label='Despesas' valor={`R$ ${somatorio.despesa / 100}`}> <AttachMoneyIcon /> </Card>
-        <Card label='Metas' valor={'R$ 250,00'} isMeta metas={metas}> <AdsClickIcon /> </Card>
+        <Card label='Metas' valor={'R$ 250,00'} isMeta saldo={somatorio.saldo}> <AdsClickIcon /> </Card>
       </Grid>
     </Grid>
   )
