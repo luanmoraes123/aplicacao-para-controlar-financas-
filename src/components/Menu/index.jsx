@@ -53,16 +53,6 @@ const  Menu = ({children}) => {
                 </ListItemButton>
               </ListItem>
             </S.Link>
-            <S.Link href='categoria'>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <WalletIcon style={{color: '#fff'}}/>
-                  </ListItemIcon>
-                  <ListItemText primary='Categoria' />
-                </ListItemButton>
-              </ListItem>
-            </S.Link>
             <S.Link href='/extrato'>
               <ListItem disablePadding>
                 <ListItemButton>
