@@ -24,7 +24,6 @@ const CategoriasUpdate = () => {
           }
         });
         setName(res.data.data.name);
-        console.log(res.data);
       } catch (error) {
         setNotification({
           open: true,

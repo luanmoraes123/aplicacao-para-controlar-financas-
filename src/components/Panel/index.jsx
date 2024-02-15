@@ -39,11 +39,9 @@ const Panel = () => {
         }
 
         somatorio.saldo = somatorio.receita - somatorio.despesa;
-        console.log(somatorio)
         setSomatorio(somatorio);
 
       } catch (error) {
-       console.log(error);
       }
      }
     getTransacoes();

@@ -86,7 +86,6 @@ const MetasCreate = ({openModal, closeModal}) => {
 
       handleClose();
     } catch (error) {
-      console.log(error);
       setNotification({
         open: true,
         message: error.response.data.data,

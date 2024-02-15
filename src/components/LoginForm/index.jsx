@@ -28,7 +28,6 @@ const LoginForm = () => {
       });
       router.push('/dashboard');
     } catch (error) {
-      console.log(error);
       setNotification({
         open: true,
         message: error.response.data.error,

@@ -27,7 +27,6 @@ const MetasUpdate = ({metaId}) => {
         setDescricao(res.data.data.descricao);
         setValor(res.data.data.valor);
         setDataMeta(res.data.data.data);
-        console.log(res.data);
       } catch (error) {
         setNotification({
           open: true,

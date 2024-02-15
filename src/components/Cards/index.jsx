@@ -24,7 +24,6 @@ const Card = ({children, label, valor, isMeta, saldo = 0}) => {
 
 
       } catch (error) {
-       console.log(error);
       }
      }
     getMetas();

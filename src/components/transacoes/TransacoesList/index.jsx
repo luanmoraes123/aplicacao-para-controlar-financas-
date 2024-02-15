@@ -43,7 +43,6 @@ const TransacoesList = () => {
         
 
       } catch (error) {
-       console.log(error);
       }
      }
   

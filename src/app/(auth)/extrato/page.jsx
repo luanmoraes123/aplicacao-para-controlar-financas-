@@ -12,7 +12,6 @@ import TransacoesList from '../../../components/transacoes/TransacoesList';
 const ExtratoPage = () => {
 
   const router = useRouter();
-  const [user, setUser] = useState({id: null});
   const [openCategoria, setOpenCategoria] = useState(false);
   const [openMetas, setOpenMetas] = useState(false);
   const [openTransacoes, setOpenTransacoes] = useState(false);
@@ -42,7 +41,6 @@ const ExtratoPage = () => {
         'Authorization': `Bearer ${token}`
       }
     }).then(res => {
-      setUser(res.data.data);
     }).catch(res => {
       router.push('/login');
     })

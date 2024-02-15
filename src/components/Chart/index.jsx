@@ -59,7 +59,6 @@ const Chart = () => {
         setDataset(dataset) 
 
       } catch (error) {
-       console.log(error);
       }
      }
   
