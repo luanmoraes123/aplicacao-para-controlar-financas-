@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Documentação da Aplicação para Controle de Finanças
 
-## Getting Started
+## Introdução
+Este repositório contém uma aplicação web desenvolvida para auxiliar os usuários no controle de suas finanças pessoais. A aplicação oferece recursos para registrar despesas, receitas e categorizá-las, gerando insights sobre os hábitos financeiros e permitindo um melhor gerenciamento dos recursos.
 
-First, run the development server:
+## Funcionalidades Principais
+A aplicação possui as seguintes funcionalidades principais:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Registro de Despesas e Receitas**: Os usuários podem registrar suas despesas e receitas de forma detalhada, incluindo o valor, categoria, data e uma breve descrição.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Categorização Automática**: A aplicação oferece a capacidade de categorizar automaticamente as transações com base em padrões reconhecidos, facilitando a organização e análise dos dados.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. **Geração de Relatórios e Insights**: Os usuários podem gerar relatórios detalhados sobre suas transações financeiras, incluindo gráficos e estatísticas que oferecem insights sobre seus hábitos de consumo e fluxo de caixa.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **Gerenciamento de Metas Financeiras**: A aplicação permite que os usuários definam metas financeiras e acompanhem seu progresso ao longo do tempo, ajudando a manter o foco e a disciplina para alcançar objetivos específicos.
 
-## Learn More
+5. **Interface Intuitiva e Amigável**: A interface da aplicação foi projetada visando a facilidade de uso e a experiência do usuário, proporcionando uma navegação intuitiva e acesso rápido às principais funcionalidades.
 
-To learn more about Next.js, take a look at the following resources:
+## Tecnologias Utilizadas
+A aplicação foi desenvolvida utilizando as seguintes tecnologias:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**:
+  - HTML5
+  - CSS3
+  - JavaScript (incluindo frameworks como React.js, Nextjs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Backend**:
+  - Node.js
+  - Express.js
+  - Banco de Dados (MySQL)
 
-## Deploy on Vercel
+- **Autenticação e Autorização**:
+  - JWT (JSON Web Tokens) para autenticação de usuários
+  - Controle de acesso baseado em papéis (roles)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Como Utilizar
+Para utilizar a aplicação, siga as instruções abaixo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Clone o Repositório**: Faça o clone deste repositório para o seu ambiente local.
+
+2. **Instale as Dependências**: Navegue até o diretório do projeto e instale as dependências tanto para o frontend quanto para o backend. Você pode usar npm ou yarn para isso.
+
+    ```bash
+    npm install
+    ```
+
+3. **Configure o Ambiente**: Configure as variáveis de ambiente necessárias, como as credenciais do banco de dados e as configurações de autenticação.
+
+4. **Inicie o Servidor**: Inicie o servidor backend executando o seguinte comando:
+
+    ```bash
+    npm start
+    ```
+
+5. **Execute o Frontend**: Inicie o servidor frontend para iniciar a aplicação web:
+
+    ```bash
+    npm start
+    ```
+
+6. **Acesse a Aplicação**: Acesse a aplicação através do navegador web, utilizando o endereço fornecido pelo servidor frontend (geralmente `http://localhost:3000`).
+
+## Contribuição
+Contribuições são bem-vindas! Se você identificar problemas, bugs ou tiver sugestões de melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request. Por favor, siga as diretrizes de contribuição do projeto ao enviar alterações.
+
+## Licença
+Este projeto está licenciado sob a [MIT License](LICENSE).
